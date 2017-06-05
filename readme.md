@@ -6,6 +6,7 @@ An adventure game farm collect craft explore
 
 ### dependency 
 - **processing 3** is required to run the program at https://processing.org/download/
+- **sprites library** for handeling sprites
 
 
 ### technicals
