@@ -29,6 +29,6 @@ An adventure game farm collect craft explore this file should publish / run on a
 
 ### Credits
 * i dint do any of the 
-* fonts by brian kent ~kentpw@norwich.net~
+* fonts by brian kent kentpw@norwich.net
 
 
