@@ -37,8 +37,8 @@ final boolean PLYR_ADDSEED = false;
 int playerState = PLYR_STOPED;
 StopWatch sw = new StopWatch();
 int numshroom = 3;
-//declarations
-//Sprite player;
+//class declarations *********************************
+ 
 Player player;
 inventory inventory;
 Player_item[] shrooms = new Player_item[ numshroom ];
@@ -47,6 +47,10 @@ Sprite redShroom;
 Sprite blueShroom;
 Sprite monarch;
 Debug_hud hud;
+pause_screen pauseScreen;
+gameOver_screen gameOver;
+playing_screen playing;
+attract_screen attract;
 //physics
 float spring = 0.05;
 float gravity = 0.03;
@@ -122,34 +126,8 @@ public void drawPlaying() {
   //S4P.drawSprites();
   inventory.drawInventory();
 };
-public void drawGameOver() {
-  PFont kirby;
-  background( bg );
-  fill( #cafb98, 150 );
-  rect( 70, 90, 500, 110, 7 );
-  kirby = createFont( "kirbyss.ttf", 100 );
-  textFont( kirby );
-  fill( #ffffff, 255 );
-  text( "paused", width / 2, 130 );
-  textSize( 32 );
-  fill( #a52a2a, 200 );
-  text( "-press A to start-", width / 2, 180 );
-  textAlign( CENTER, CENTER );
-};
-public void drawPaused() {
-  PFont kirby;
-  background( bg );
-  fill( #cafb98, 150 );
-  rect( 20, 90, 600, 110, 7 );
-  kirby = createFont( "kirbyss.ttf", 100 );
-  textFont( kirby );
-  fill( #ffffff, 255 );
-  text( "PAUSED", width / 2, 130 );
-  textSize( 32 );
-  fill( #a52a2a, 200 );
-  text( "Press -A- to resume", width / 2, 180 );
-  textAlign( CENTER, CENTER );
-};
+ 
+ 
 ///process collisions
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
@@ -178,6 +156,28 @@ public void initAtract() {
   monarch.setVelX( 100 );
   monarch.setVelY( 50 );
 };
+
+public void initAttract_scrn(){
+
+attract = new attract_screen();
+print ("pause screen init done");
+
+
+};
+
+public void initPause(){
+
+pauseScreen = new pause_screen();
+print ("pause screen init done");
+
+};
+public void initGameOver(){
+
+gameOver = new gameOver_screen();
+print ("gameOver screen init done");
+
+};
+
 public void initHud() {
   hud = new Debug_hud();
   print( "Console: " + "initilize the HUD ! " + "\n" );
@@ -217,6 +217,16 @@ public void initInventory() {
 public void initGameState() {
   state = GameState.PLAYING;
 };
+
+public void initPlaying(){
+
+playing = new playing_screen();
+
+};
+
+
+
+
 void setup() { // set up runs once
     size( 640, 360 );
     // The image file must be in the data folder of the current sketch 
@@ -225,7 +235,14 @@ void setup() { // set up runs once
     bg = loadImage( "bg_day640x360.png" );
     initAtract();
     initGameState();
+//initianlize screens
     initHud();
+    initPause();
+    initGameOver();
+    initPlaying();
+    initAttract_scrn();
+    
+    
     initPlayer();
     initInventory();
     initShrooms();
@@ -237,16 +254,16 @@ public void draw() {
     // Draw game states //  atract_start, playing, game_over, paused switch on [gameState]
     switch ( state ) {
       case ATRACT:
-        drawAtract();
+        attract.draw();//drawAtract();
         break;
       case PLAYING:
-        drawPlaying();
+        playing.draw(); //drawPlaying();
         break;
       case GAME_OVER:
-        drawGameOver();
+        gameOver.draw();//drawGameOver();
         break;
       case PAUSED:
-        drawPaused();
+        pauseScreen.draw();//drawPaused();
         break;
         // default: drawAtract();
     }; // end switch
