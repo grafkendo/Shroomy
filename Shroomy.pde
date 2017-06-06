@@ -23,8 +23,6 @@ PImage bg;
 public enum GameState{ATRACT, PLAYING ,GAME_OVER ,PAUSED;
 // Constructor
 
- 
-
  private GameState(){
 
   
@@ -70,9 +68,6 @@ float friction = -0.9;
  
 
 
-  
-
-
 
 public void pre() {
   // Calculate time difference since last call
@@ -83,7 +78,7 @@ public void pre() {
 
 
 
-////Controlls
+//// player Controlls
 public void keyEvent(KeyEvent e) {
   if (key == CODED) {
     switch(keyCode) {
@@ -108,8 +103,26 @@ public void keyEvent(KeyEvent e) {
       playerState = PLYR_STOPED;
      player._Sprite.setFrameSequence(12,13,0.3f);
       break;
-    }
+    }// end switch controlls
   }
+  else   // debug controlls
+    switch (key){
+      case 'x':
+      state = GameState.GAME_OVER;
+    break;
+      case 'a'://action button
+      state = GameState.PLAYING;
+    break;
+      case 'q'://quit 
+      state = GameState.ATRACT;
+      break;
+      case 'p'://paused
+      state = GameState.PAUSED;
+    }
+  
+  
+  
+  
   }
   
   
@@ -164,7 +177,25 @@ processCollisions();
 
 };
   
-  public void drawPaused() {   };
+  public void drawPaused() { 
+  
+   PFont kirby;
+    background(bg);
+    fill(#cafb98,150);
+    rect(20, 90, 600, 110, 7);
+    kirby = createFont ("kirbyss.ttf",100);
+    textFont(kirby);
+
+  fill(#ffffff,255);
+  text("PAUSED",width/2,130);
+  textSize(32);
+  fill(#a52a2a,200);
+  text("Press -A- to resume",width/2,180);
+  textAlign(CENTER,CENTER);
+  
+  
+  };
+  
   
   
 
