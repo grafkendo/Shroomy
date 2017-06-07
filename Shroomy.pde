@@ -45,10 +45,14 @@ int numshroom = 3;
 Player player = new Player();
 inventory inventory;
 Player_item[] shrooms = new Player_item[ numshroom ];
+
+//load create sprites
 Sprite greenShroom;
 Sprite redShroom;
 Sprite blueShroom;
 Sprite monarch;
+
+// laod screens
 Debug_hud hud = new Debug_hud();
 pause_screen pauseScreen = new pause_screen();
 gameOver_screen gameOver = new gameOver_screen();
@@ -66,8 +70,8 @@ public void pre() {
     float elapsedTime = ( float ) sw.getElapsedTime();
     S4P.updateSprites( elapsedTime );
   }
-  
-  //// player basic Controlls*******************************************************************************************
+
+//// player basic Controlls*******************************************************************************************
 public void keyEvent( KeyEvent e ) { //TODO add logic for inputs eg. procControll(key,gamestate,playerstate);
     if ( key == CODED ) {
       switch ( keyCode ) {
