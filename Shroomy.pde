@@ -1,4 +1,4 @@
-/// is this the git hub version?
+/// player issue branch trying to get the pplayer object encapsulated constructor and sprinte object passed in.
 import sprites.*;
 import sprites.maths.*;
 import sprites.utils.*;
@@ -27,7 +27,7 @@ public enum GameState {
 // variable for game states
 GameState state;
 
-//player states CONSTANTS
+//player CONSTANTS
 final float PLYR_VEL = 100;
 final int PLYR_STOPED = 0;
 final int PLYR_LEFT = -1;
@@ -43,7 +43,7 @@ int numshroom = 3;
 //class declarations *********************************
  
 Player player = new Player();
-inventory inventory;
+
 Player_item[] shrooms = new Player_item[ numshroom ];
 
 //load create sprites
@@ -52,12 +52,16 @@ Sprite redShroom;
 Sprite blueShroom;
 Sprite monarch;
 
-// laod screens
+// initialize stuff
 Debug_hud hud = new Debug_hud();
 pause_screen pauseScreen = new pause_screen();
 gameOver_screen gameOver = new gameOver_screen();
 playing_screen playing = new playing_screen();
 attract_screen attract = new attract_screen();
+inventory inventory = new inventory();
+
+collision_handler collision = new collision_handler();
+input_manager input = new input_manager();
 
 //physics
 float spring = 0.05;
@@ -73,67 +77,12 @@ public void pre() {
 
 //// player basic Controlls*******************************************************************************************
 public void keyEvent( KeyEvent e ) { //TODO add logic for inputs eg. procControll(key,gamestate,playerstate);
-    if ( key == CODED ) {
-      switch ( keyCode ) {
-        case UP:
-          player.setVelX( 0 );
-          playerState = PLYR_STOPED;
-          player._Sprite.setFrameSequence( 14, 16, 0.2f );
-          break;
-        case LEFT:
-          player.setVelX( PLYR_LEFT * PLYR_VEL );
-          playerState = PLYR_LEFT;
-          player._Sprite.setFrameSequence( 0, 2, 0.1f );
-          break;
-        case RIGHT:
-          player.setVelX( PLYR_RIGHT * PLYR_VEL );
-          playerState = PLYR_RIGHT;
-          player._Sprite.setFrameSequence( 3, 5, 0.1f );
-          break;
-        case DOWN:
-          player.setVelX( 0 );
-          playerState = PLYR_STOPED;
-          player._Sprite.setFrameSequence( 12, 13, 0.3f );
-          break;
-      } // end switch controlls
-    } else // debug controlls for manualy switching states
-      switch ( key ) {
-      case 'x':
-        state = GameState.GAME_OVER;
-        break;
-      case 'a': //action button
-        state = GameState.PLAYING;
-        break;
-      case 'q': //quit 
-        state = GameState.ATRACT;
-        break;
-      case 'p': //paused
-        state = GameState.PAUSED;
-    }
+  
+    input.process_input();
+    
+     
   }
    
-
-///process collisions
-public void processCollisions() {
-  // / iterate through all objects on screen proc if hit on player
-  for ( int i = 0; i < shrooms.length; i++ ) {
-    if ( shrooms[ i ]._sprite.oo_collision( player._Sprite, 3 ) ) {
-      print( "Hit!" );
-      PFont kirby;
-      kirby = createFont( "kirbyss.ttf", 32 );
-      textFont( kirby );
-      textSize( 25 );
-      text( " Press A \n to Pick up ", width / 2, height / 2 - 50 );
-      textAlign( CENTER, CENTER );
-      //fill(0,102,153,100);
-      inventory.addPlayer_item( shrooms[ i ] );
-      shrooms[i]._sprite.setXY(55,55);
-      shrooms[ i ]._sprite.setVelXY( 0, 0 );
-      //shrooms[0].setDead(true);
-    }; // end if
-  }; //end loop
-}; // end proc collisions
-
 
 public void initMonarch() {
   monarch = new Sprite( this, "butterfly_sprite2.png", 10, 4, 0, true );
@@ -174,11 +123,6 @@ public void initShrooms() {
   print( "Console: " + "shroom array initialized ! " + "\n" );
 };
 
-public void initInventory() {
-  inventory = new inventory();
-  inventory.tools[ 0 ] = new Player_item( "rock", "common" );
-  print( "Console: " + "inventory initialized ! \n" );
-};
 public void initGameState() {
   state = GameState.PLAYING;
 };
@@ -191,14 +135,16 @@ void setup() { // set up runs once
     // to load successfully
     img = loadImage( "RetroMushroom.png" );
     bg = loadImage( "bg_day640x360.png" );
+    
+
     initMonarch();
     initGameState();
       
 //initialize 
 
     initPlayer();
-    initInventory();
     initShrooms();
+    
     registerMethod( "pre", this );
     registerMethod( "keyEvent", this );
   } // end set up

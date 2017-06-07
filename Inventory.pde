@@ -3,9 +3,18 @@ public class inventory {
   int slotA = 55;
   private Player_item[] tools = new Player_item[3];
   private ArrayList < Sprite > icons = new ArrayList < Sprite > ();
+  
+  
+  //constructor
   public inventory() {
-    tools[0] = new Player_item("water can", "common");
+
+  tools[0] = new Player_item("water can", "common");
+  tools[ 0 ] = new Player_item( "rock", "common" );
+  print( "Console: " + "inventory initialized ! \n" );
+    
   };
+  
+  
   void AddShroom(Sprite shroom) {
     icons.add(shroom);
     shroom.isDead();
