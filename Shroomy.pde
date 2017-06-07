@@ -26,6 +26,7 @@ public enum GameState {
 // saparate draw functions for each game state
 // variable for game states
 GameState state;
+
 //player states CONSTANTS
 final float PLYR_VEL = 100;
 final int PLYR_STOPED = 0;
@@ -37,29 +38,35 @@ final boolean PLYR_ADDSEED = false;
 int playerState = PLYR_STOPED;
 StopWatch sw = new StopWatch();
 int numshroom = 3;
+
+
 //class declarations *********************************
  
-Player player;
+Player player = new Player();
 inventory inventory;
 Player_item[] shrooms = new Player_item[ numshroom ];
 Sprite greenShroom;
 Sprite redShroom;
 Sprite blueShroom;
 Sprite monarch;
-Debug_hud hud;
-pause_screen pauseScreen;
-gameOver_screen gameOver;
-playing_screen playing;
-attract_screen attract;
+Debug_hud hud = new Debug_hud();
+pause_screen pauseScreen = new pause_screen();
+gameOver_screen gameOver = new gameOver_screen();
+playing_screen playing = new playing_screen();
+attract_screen attract = new attract_screen();
+
 //physics
 float spring = 0.05;
 float gravity = 0.03;
 float friction = -0.9;
+
+
 public void pre() {
     // Calculate time difference since last call
     float elapsedTime = ( float ) sw.getElapsedTime();
     S4P.updateSprites( elapsedTime );
   }
+  
   //// player basic Controlls*******************************************************************************************
 public void keyEvent( KeyEvent e ) { //TODO add logic for inputs eg. procControll(key,gamestate,playerstate);
     if ( key == CODED ) {
@@ -100,34 +107,8 @@ public void keyEvent( KeyEvent e ) { //TODO add logic for inputs eg. procControl
         state = GameState.PAUSED;
     }
   }
-  // Draw game states //  atract_start, playing, game_over, paused
-public void drawAtract() {
-  PFont kirby;
-  background( bg );
-  fill( #cafb98, 150 );
-  rect( 70, 90, 500, 110, 7 );
-  kirby = createFont( "kirbyss.ttf", 100 );
-  textFont( kirby );
-  fill( #ffffff, 255 );
-  text( "SHROOMY", width / 2, 130 );
-  textSize( 32 );
-  fill( #a52a2a, 200 );
-  text( "-press A to start-", width / 2, 180 );
-  textAlign( CENTER, CENTER );
-  //fill(0,152,153,100);
-  //TODO:  clear font ..... 
-};
-public void drawPlaying() {
-  background( bg );
-  processCollisions();
-  //  initPlayer();
-  //  initShrooms();
-  //  initInventory();
-  //S4P.drawSprites();
-  inventory.drawInventory();
-};
- 
- 
+   
+
 ///process collisions
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
@@ -142,13 +123,15 @@ public void processCollisions() {
       textAlign( CENTER, CENTER );
       //fill(0,102,153,100);
       inventory.addPlayer_item( shrooms[ i ] );
-      // shrooms[i]._sprite.setXY(55,55);
+      shrooms[i]._sprite.setXY(55,55);
       shrooms[ i ]._sprite.setVelXY( 0, 0 );
       //shrooms[0].setDead(true);
     }; // end if
   }; //end loop
 }; // end proc collisions
-public void initAtract() {
+
+
+public void initMonarch() {
   monarch = new Sprite( this, "butterfly_sprite2.png", 10, 4, 0, true );
   //TODO: adjust monarch frame sequence for left and right flying.
   monarch.setFrameSequence( 10, 20, 0.05f );
@@ -157,31 +140,7 @@ public void initAtract() {
   monarch.setVelY( 50 );
 };
 
-public void initAttract_scrn(){
 
-attract = new attract_screen();
-print ("pause screen init done");
-
-
-};
-
-public void initPause(){
-
-pauseScreen = new pause_screen();
-print ("pause screen init done");
-
-};
-public void initGameOver(){
-
-gameOver = new gameOver_screen();
-print ("gameOver screen init done");
-
-};
-
-public void initHud() {
-  hud = new Debug_hud();
-  print( "Console: " + "initilize the HUD ! " + "\n" );
-};
 public void initPlayer() {
   // note sprites can only be created in setup becaue of image load
   player = new Player();
@@ -190,6 +149,7 @@ public void initPlayer() {
   player._Sprite.setXY( width / 2, 275 );
   print( "Console: " + "player initialized ! " + "\n" );
 };
+
 // init shrooms method to move each mushroom
 public void initShrooms() {
   String[] images = new String[ 3 ];
@@ -209,6 +169,7 @@ public void initShrooms() {
   }
   print( "Console: " + "shroom array initialized ! " + "\n" );
 };
+
 public void initInventory() {
   inventory = new inventory();
   inventory.tools[ 0 ] = new Player_item( "rock", "common" );
@@ -217,38 +178,27 @@ public void initInventory() {
 public void initGameState() {
   state = GameState.PLAYING;
 };
-
-public void initPlaying(){
-
-playing = new playing_screen();
-
-};
-
-
-
+ 
 
 void setup() { // set up runs once
     size( 640, 360 );
-    // The image file must be in the data folder of the current sketch 
+    
+// The image file must be in the data folder of the current sketch 
     // to load successfully
     img = loadImage( "RetroMushroom.png" );
     bg = loadImage( "bg_day640x360.png" );
-    initAtract();
+    initMonarch();
     initGameState();
-//initianlize screens
-    initHud();
-    initPause();
-    initGameOver();
-    initPlaying();
-    initAttract_scrn();
-    
-    
+      
+//initialize 
+
     initPlayer();
     initInventory();
     initShrooms();
     registerMethod( "pre", this );
     registerMethod( "keyEvent", this );
   } // end set up
+  
 public void draw() {
     // switch to draw method per gamestate 
     // Draw game states //  atract_start, playing, game_over, paused switch on [gameState]
@@ -264,13 +214,10 @@ public void draw() {
         break;
       case PAUSED:
         pauseScreen.draw();//drawPaused();
-        break;
-        // default: drawAtract();
+        break;       
+default: attract.draw();
     }; // end switch
-    //background(bg);
+ 
     S4P.drawSprites();
-    //inventory.drawInventory();
-    // to do change thsi so that the game uses an instance of Player object
-    //processCollisions();
-    //hud.draw();
+   
   } //end draw
