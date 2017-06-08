@@ -58,9 +58,7 @@ pause_screen pauseScreen = new pause_screen();
 gameOver_screen gameOver = new gameOver_screen();
 playing_screen playing = new playing_screen();
 attract_screen attract = new attract_screen();
-inventory inventory = new inventory();
-
-collision_handler collision = new collision_handler();
+inventory inventory = new inventory(); 
 input_manager input = new input_manager();
 
 //physics
@@ -132,16 +130,13 @@ void setup() { // set up runs once
     size( 640, 360 );
     
 // The image file must be in the data folder of the current sketch 
-    // to load successfully
+// to load successfully images only load in setup
     img = loadImage( "RetroMushroom.png" );
     bg = loadImage( "bg_day640x360.png" );
     
-
+//initialize 
     initMonarch();
     initGameState();
-      
-//initialize 
-
     initPlayer();
     initShrooms();
     
