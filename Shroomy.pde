@@ -1,4 +1,4 @@
-/// player issue branch trying to get the pplayer object encapsulated constructor and sprinte object passed in.
+/// work check
 import sprites.*;
 import sprites.maths.*;
 import sprites.utils.*;
@@ -14,18 +14,18 @@ PImage bg;
 //Game states
 //  atract_start, playing, game_over, paused
 // save as emum or an object
-public enum GameState {
-  ATRACT,
-  PLAYING,
-  IN_MENU,
-  GAME_OVER,
-  PAUSED;
-  // Constructor
-  private GameState() {};
-};
+//public enum GameState {
+//  ATRACT,
+//  PLAYING,
+//  IN_MENU,
+//  GAME_OVER,
+//  PAUSED;
+//  // Constructor
+//  private GameState() {};
+//};
 // saparate draw functions for each game state
 // variable for game states
-GameState state;
+//GameState state;
 
 //player CONSTANTS
 final float PLYR_VEL = 100;
@@ -38,7 +38,6 @@ final boolean PLYR_ADDSEED = false;
 int playerState = PLYR_STOPED;
 StopWatch sw = new StopWatch();
 int numshroom = 3;
-
 
 //class declarations *********************************
  
@@ -53,6 +52,8 @@ Sprite blueShroom;
 Sprite monarch;
 
 // initialize stuff
+Game game = new Game();  
+
 Debug_hud hud = new Debug_hud();
 pause_screen pauseScreen = new pause_screen();
 gameOver_screen gameOver = new gameOver_screen();
@@ -121,14 +122,13 @@ public void initShrooms() {
   print( "Console: " + "shroom array initialized ! " + "\n" );
 };
 
-public void initGameState() {
-  state = GameState.PLAYING;
-};
- 
+//public void initGameState() {
+//  state = GameState.PLAYING;
+//};
 
 void setup() { // set up runs once
     size( 640, 360 );
-    
+     
 // The image file must be in the data folder of the current sketch 
 // to load successfully images only load in setup
     img = loadImage( "RetroMushroom.png" );
@@ -136,7 +136,7 @@ void setup() { // set up runs once
     
 //initialize 
     initMonarch();
-    initGameState();
+    //initGameState();
     initPlayer();
     initShrooms();
     
@@ -147,7 +147,7 @@ void setup() { // set up runs once
 public void draw() {
     // switch to draw method per gamestate 
     // Draw game states //  atract_start, playing, game_over, paused switch on [gameState]
-    switch ( state ) {
+    switch (game.State) {
       case ATRACT:
         attract.draw();//drawAtract();
         break;

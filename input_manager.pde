@@ -36,16 +36,16 @@ if ( key == CODED ) {
     } else // debug controlls for manualy switching states
       switch ( key ) {
       case 'x':
-        state = GameState.GAME_OVER;
+        state = GAME_OVER;
         break;
       case 'a': //action button
-        state = GameState.PLAYING;
+        state = PLAYING;
         break;
       case 'q': //quit 
-        state = GameState.ATRACT;
+        state = ATRACT;
         break;
       case 'p': //paused
-        state = GameState.PAUSED;
+        state = PAUSED;
     }
 
 
