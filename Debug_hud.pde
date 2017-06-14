@@ -4,10 +4,10 @@ class Debug_hud{
 
 public void draw(){
 
-  int output = shrooms.length;
-  double shrm_1pos = Math.round(shrooms[0]._sprite.getX());
-  double shrm_2pos = Math.round(shrooms[1]._sprite.getX());
-  double shrm_3pos = Math.round(shrooms[2]._sprite.getX());
+  int output = inShrooms.shrooms.length;
+  double shrm_1pos = Math.round(inShrooms.shrooms[0]._sprite.getX());
+  double shrm_2pos = Math.round(inShrooms.shrooms[1]._sprite.getX());
+  double shrm_3pos = Math.round(inShrooms.shrooms[2]._sprite.getX());
   double plyr_pos =  Math.round(player.getX());
   
 

@@ -48,8 +48,7 @@ StopWatch sw = new StopWatch();
 Player player = new Player();
 
 //int numshroom = 3;
-
-Player_item[] shrooms = inShrooms.get_shrooms();
+ 
 
 //load create sprites
 //Sprite greenShroom;
@@ -65,7 +64,7 @@ playing_screen playing = new playing_screen();
 attract_screen attract = new attract_screen();
 inventory inventory = new inventory(); 
 input_manager input = new input_manager();
-add_shrooms inShrooms = new add_shrooms();
+
 
 //physics
 float spring = 0.05;
@@ -107,30 +106,13 @@ public void initPlayer() {
   print( "Console: " + "player initialized ! " + "\n" );
 };
 
-// init shrooms method to move each mushroom
-//public void initShrooms() {
-//  String[] images = new String[ 3 ];
-//  images[ 0 ] = "RetroMushroom.png";
-//  images[ 1 ] = "RetroMushroom2.png";
-//  images[ 2 ] = "RetroMushroom3.png";
-//  for ( int i = 0; i < numshroom; i++ ) {
-//    shrooms[ i ] = new Player_item( "shroom +i,", "common" );
-//    shrooms[ i ]._sprite = new Sprite( this, images[ i ], 1, 1, 0 );
-//    shrooms[ i ]._sprite.setDomain( 1, 1, width, height, Sprite.REBOUND );
-//    shrooms[ i ]._sprite.setScale( 0.1f );
-//    // station ary shrooms for pick up test
-//    shrooms[ i ]._sprite.setVelX( 0 );
-//    // shrooms[i]._sprite.setVelX((i+2)*10);
-//    //spread the stationary mushrooms starting points out
-//    shrooms[ i ]._sprite.setXY( 200 * i, 305 + ( 5 * i ) );
-//  }
-//  print( "Console: " + "shroom array initialized ! " + "\n" );
-//};
-
+ 
+ add_shrooms inShrooms;
  
 
 void setup() { // set up runs once
     size( 640, 360 );
+    inShrooms = new add_shrooms();
     
 // The image file must be in the data folder of the current sketch 
 // to load successfully images only load in setup
@@ -139,17 +121,13 @@ void setup() { // set up runs once
     
 //initialize 
     initMonarch();
-    
     initPlayer();
-    initShrooms();
-    
     registerMethod( "pre", this );
     registerMethod( "keyEvent", this );
   } // end set up
   
 public void draw() {
     // switch to draw method per gamestate 
-    // Draw game states //  atract_start, playing, game_over, paused switch on [gameState]
     switch ( state ) {
       case ATRACT:
         attract.draw();//drawAtract();
