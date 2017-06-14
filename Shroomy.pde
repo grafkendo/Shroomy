@@ -14,6 +14,7 @@ PImage bg;
 //Game states
 //  atract_start, playing, game_over, paused
 // save as emum or an object
+
 public enum GameState {
   ATRACT,
   PLAYING,
@@ -21,11 +22,14 @@ public enum GameState {
   GAME_OVER,
   PAUSED;
   // Constructor
-  private GameState() {};
+  private GameState() {
+  
+  };
+  
 };
 // saparate draw functions for each game state
 // variable for game states
-GameState state;
+GameState state = GameState.ATRACT;;
 
 //player CONSTANTS
 final float PLYR_VEL = 100;
@@ -37,19 +41,20 @@ final boolean PLYR_ADDSEED = false;
 // Current player state
 int playerState = PLYR_STOPED;
 StopWatch sw = new StopWatch();
-int numshroom = 3;
 
 
 //class declarations *********************************
  
 Player player = new Player();
 
-Player_item[] shrooms = new Player_item[ numshroom ];
+//int numshroom = 3;
+
+Player_item[] shrooms = inShrooms.get_shrooms();
 
 //load create sprites
-Sprite greenShroom;
-Sprite redShroom;
-Sprite blueShroom;
+//Sprite greenShroom;
+//Sprite redShroom;
+//Sprite blueShroom;
 Sprite monarch;
 
 // initialize stuff
@@ -60,6 +65,7 @@ playing_screen playing = new playing_screen();
 attract_screen attract = new attract_screen();
 inventory inventory = new inventory(); 
 input_manager input = new input_manager();
+add_shrooms inShrooms = new add_shrooms();
 
 //physics
 float spring = 0.05;
@@ -102,28 +108,25 @@ public void initPlayer() {
 };
 
 // init shrooms method to move each mushroom
-public void initShrooms() {
-  String[] images = new String[ 3 ];
-  images[ 0 ] = "RetroMushroom.png";
-  images[ 1 ] = "RetroMushroom2.png";
-  images[ 2 ] = "RetroMushroom3.png";
-  for ( int i = 0; i < numshroom; i++ ) {
-    shrooms[ i ] = new Player_item( "shroom +i,", "common" );
-    shrooms[ i ]._sprite = new Sprite( this, images[ i ], 1, 1, 0 );
-    shrooms[ i ]._sprite.setDomain( 1, 1, width, height, Sprite.REBOUND );
-    shrooms[ i ]._sprite.setScale( 0.1f );
-    // station ary shrooms for pick up test
-    shrooms[ i ]._sprite.setVelX( 0 );
-    // shrooms[i]._sprite.setVelX((i+2)*10);
-    //spread the stationary mushrooms starting points out
-    shrooms[ i ]._sprite.setXY( 200 * i, 305 + ( 5 * i ) );
-  }
-  print( "Console: " + "shroom array initialized ! " + "\n" );
-};
+//public void initShrooms() {
+//  String[] images = new String[ 3 ];
+//  images[ 0 ] = "RetroMushroom.png";
+//  images[ 1 ] = "RetroMushroom2.png";
+//  images[ 2 ] = "RetroMushroom3.png";
+//  for ( int i = 0; i < numshroom; i++ ) {
+//    shrooms[ i ] = new Player_item( "shroom +i,", "common" );
+//    shrooms[ i ]._sprite = new Sprite( this, images[ i ], 1, 1, 0 );
+//    shrooms[ i ]._sprite.setDomain( 1, 1, width, height, Sprite.REBOUND );
+//    shrooms[ i ]._sprite.setScale( 0.1f );
+//    // station ary shrooms for pick up test
+//    shrooms[ i ]._sprite.setVelX( 0 );
+//    // shrooms[i]._sprite.setVelX((i+2)*10);
+//    //spread the stationary mushrooms starting points out
+//    shrooms[ i ]._sprite.setXY( 200 * i, 305 + ( 5 * i ) );
+//  }
+//  print( "Console: " + "shroom array initialized ! " + "\n" );
+//};
 
-public void initGameState() {
-  state = GameState.PLAYING;
-};
  
 
 void setup() { // set up runs once
@@ -136,7 +139,7 @@ void setup() { // set up runs once
     
 //initialize 
     initMonarch();
-    initGameState();
+    
     initPlayer();
     initShrooms();
     
