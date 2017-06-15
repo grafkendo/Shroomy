@@ -13,7 +13,7 @@ public  enum state {
   // Constructor
   private void  game_state_manager() {
   
-    state = ATRACT;
+     
     
   };
   
