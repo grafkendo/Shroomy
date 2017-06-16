@@ -17,10 +17,12 @@ public void processCollisions() {
       text( " Press A \n to Pick up ", width / 2, height / 2 - 50 );
       textAlign( CENTER, CENTER );
       //fill(0,102,153,100);
+      
+     // here the inventory is hard coded to pick up the first item of shrrooms
+    // we need to get the item player is coliding with and give prompt to pickup
+    
       inventory.addPlayer_item( inShrooms.shrooms[ i ] );
-      inShrooms.shrooms[i]._sprite.setXY(55,55);
-      inShrooms.shrooms[ i ]._sprite.setVelXY( 0, 0 );
-      //shrooms[0].setDead(true);
+     
     }; // end if
   }; //end loop
 }; // end proc collisions

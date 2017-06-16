@@ -17,6 +17,7 @@ public void draw(){
   //  initInventory();
   //S4P.drawSprites();
   inventory.drawInventory();
+  //hud.draw();
   
   
   
