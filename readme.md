@@ -1,7 +1,7 @@
 ![musroomImage](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48VDKbe9nv4hmwFP_ZSsMXiOvNn7TRs9yWeLy5pVD7Yz7ycF9)
 
 
-# *SHROOMY* 
+# *SHROOMY* (encapsulate player object issue)
 
 An adventure game farm collect craft explore
 
@@ -17,7 +17,7 @@ An adventure game farm collect craft explore this file should publish / run on a
 
 ### technicals
 
-- programed in  *javascript*
+- programed in  *java*
 - also using the *sprites* js library
 - curently using a state machine through switch statments to controll game logic
 
