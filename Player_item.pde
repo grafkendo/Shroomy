@@ -2,7 +2,7 @@
 
  public class Player_item {
   //private instance variables
-  
+
   // referance to sprite associated wi th this object
    Sprite _sprite;
     //public variables
@@ -20,12 +20,13 @@
   // constructors
    public  Player_item(String n,String t) //<>//
    {
+     
     _name = n;
     _type = t;
     _weight = 1;
     _quality = 1;
     _selected = false;
-    print(" player item contructor called  \n ");
+    print(" player item contsructor called  \n ");
    }// end constructor
    
    
