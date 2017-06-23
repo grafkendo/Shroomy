@@ -24,9 +24,16 @@ public void draw(){
   
 };
 
+public void reset(){
+Random rand = new Random();
+for(Player_item item: inShrooms.shrooms){
+  float randomInt = rand.nextInt(60);
+ item._sprite.setX (randomInt);
+  item._sprite.setY (300.2f);
+ 
+}
+ }
 
 
 
-
-
-};
+}

@@ -10,6 +10,10 @@ this should be addign shrooms to the game world not to the player inventory
  Player_item red;
  Player_item blue;
  Player_item green;
+
+ Player_item star;
+ Player_item heart;
+ 
  Player_item[] shrooms;
  
  
@@ -17,14 +21,15 @@ this should be addign shrooms to the game world not to the player inventory
  
  public add_shrooms(){
  
- shrooms = new Player_item[3];
+ shrooms = new Player_item[5];
  red = new Player_item("alvin","common");
  
  blue = new Player_item("simon","common");
   
  green = new Player_item("teddy","common");
  
- 
+star = new Player_item("star","legendary");
+heart = new Player_item("heart","rare");
  
  // eventually a loop will eliminat e this duplicat ecode
  
@@ -48,11 +53,40 @@ this should be addign shrooms to the game world not to the player inventory
        green._sprite.setVelX( 0 );
          green._sprite.setY(300.2f);
             green._sprite.setX(10.2f);
+            
+            
+            
+            
+  
+     
+     // star._sprite = new Sprite(Shroomy.this,"star.png",1,1,0);
+   //ar._sprite.setDomain( 1, 1, width, height, Sprite.REBOUND );
+     //star._sprite.setScale( 0.1f );
+     //  star._sprite.setVelX( 0 );
+     //  star._sprite.setY(300.2f);
+     //     star._sprite.setX(350.2f);
+          
+          
+          
+          
+     //      heart._sprite = new Sprite(Shroomy.this,"heartresized.png",1,1,0);
+//rt._sprite.setDomain( 1, 1, width, height, Sprite.REBOUND );
+     //heart._sprite.setScale( 0.1f );
+     //  heart._sprite.setVelX( 0 );
+     //  heart._sprite.setY(300.2f);
+     //     heart._sprite.setX(450.2f);
+            
+            
+            
+            
+            
 
  
   shrooms[0]= red;
   shrooms[1]= blue;
   shrooms[2]= green;
+    //shrooms[3]= star;
+    //shrooms[4]= heart;
   
   
  }

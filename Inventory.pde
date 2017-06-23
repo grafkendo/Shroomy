@@ -15,12 +15,16 @@ public class inventory {
   int open_position  = 0;
   int tool_count =0;
   int tool_label_pos = 0;
-  
+   Player_item star;
+ Player_item heart;
   //private ArrayList < Sprite > icons = new ArrayList < Sprite > ();
   //// this is for the players inventory
   
   //constructor
   public inventory() {
+    
+
+          
 
   tools[0] = new Player_item("empty", "common");
  tools[ 1 ] = new Player_item( "empty", "common" );
@@ -29,7 +33,8 @@ public class inventory {
    tools[4] = new Player_item("empty", "common");
  
   print( "Console: " + "inventory initialized ! \n" );
-    
+    addPlayer_item(heart);
+    addPlayer_item(star);
   };
   
   

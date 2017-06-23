@@ -25,7 +25,16 @@ PFont kirby;
 
 };
 
+public void reset(){
+for(Player_item item: inShrooms.shrooms){
+ 
+ item._sprite.setX (HYPERSPACE);
+  item._sprite.setY (HYPERSPACE);
+ 
+ }
 
+
+};
 
 
 };// end gameover screen

@@ -2,6 +2,7 @@
 import sprites.*;
 import sprites.maths.*;
 import sprites.utils.*;
+import java.util.Random;
 // draw a sprite from documentation
 /**
  * Bouncy Bubbles  
@@ -9,6 +10,7 @@ import sprites.utils.*;
  * 
  * Multiple-object collision.
  */
+ final int HYPERSPACE = -500;
 PImage img; //mushroom image Declare variable "a" of type PImage
 PImage bg;
 //Game states
@@ -109,6 +111,15 @@ public void initPlayer() {
  
  add_shrooms inShrooms;
  
+// for game over move loaded sprites to hyperspace posiiton 
+void reset(){
+
+  
+
+
+
+}
+ 
 
 void setup() { // set up runs once
     size( 640, 360 );
@@ -133,9 +144,11 @@ public void draw() {
         attract.draw();//drawAtract();
         break;
       case PLAYING:
+        //aying.reset();
         playing.draw(); //drawPlaying();
         break;
       case GAME_OVER:
+         gameOver.reset();
         gameOver.draw();//drawGameOver();
         break;
       case PAUSED:
