@@ -2,6 +2,10 @@
 import sprites.*;
 import sprites.maths.*;
 import sprites.utils.*;
+import java.util.*;
+import ddf.minim.*;
+
+
 // draw a sprite from documentation
 /**
  * Bouncy Bubbles  
@@ -32,6 +36,7 @@ public enum GameState {
 GameState state = GameState.ATRACT;;
 
 //player CONSTANTS
+final float HYPERSPACE = -500;
 final float PLYR_VEL = 100;
 final int PLYR_STOPED = 0;
 final int PLYR_LEFT = -1;
@@ -112,6 +117,7 @@ public void initPlayer() {
 
 void setup() { // set up runs once
     size( 640, 360 );
+    //fullScreen(P2D);
     inShrooms = new add_shrooms();
     
 // The image file must be in the data folder of the current sketch 

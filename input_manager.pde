@@ -6,7 +6,7 @@ class input_manager{
   
   
   }
-
+// pas in gamesate and playerstate inerface?
 public void  process_input(){
 
 

@@ -1,0 +1,38 @@
+// {type:class}
+// {direction:topDown}
+[note: This UML needs updated markings to properly denote composition relationships!{bg:cornsilk}]
+[Main|Import Sprites*|GameState:enum;playerState:enum|setup();pre();keyEvent();draw();initPlayer()]
+
+[Inventorry|-Player_item;-int:open_position |+addPlayer_item();+drawInventory();removePlayer_item();selectPlayer_item()]
+[Debug_hud |shrm_1pos:double;plyr_pos:double|+draw()]
+[Player|Sprite:_sprite|initilize();ProcessCollisions();update();draw()]<>->[Inventorry]
+[Player_item|+Sprite:Sprite;|+_selected:bool;_name:String;|update();draw()]
+[add_shrooms|+shrooms:Player_item-array|+getshrooms()]
+[atract_screen|update;draw()]
+[collision_handler|processCollisions(shroom)]
+[gameOver_screen|...|Update();draw()]
+[game_state_manager|+state:enum: ATRACT;PLAYING;IN_MENU;GAME_OVER;PAUSED]
+[input_manager|...|process_input()]
+[pause_screen|draw();update()]
+[playing_screen|update();draw()]
+
+// relationships
+[Inventorry]++1-*>[Player_item]
+[Player]++*-*>[collision_handler] 
+[Main]++1-1>[Player]
+[Main]++1-1>[Debug_hud]
+[Main]++1-1>[game_state_manager]
+[Main]++1-1>[input_manager]
+[Main]++1-1>[add_shrooms]
+
+[game_state_manager]^[atract_screen]
+[game_state_manager]^[gameOver_screen]
+[game_state_manager]^[pause_screen]
+[game_state_manager]^[playing_screen]
+ 
+//[Order]++*-*>[LineItem]
+//[Order]-1>[DeliveryMethod]
+//[Order]*-*>[Product|EAN_Code|promo_price()]
+//[Category]<->[Product]
+//[DeliveryMethod]^[National]
+//[DeliveryMethod]^[International]

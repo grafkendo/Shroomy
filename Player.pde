@@ -13,7 +13,7 @@ public class Player {
   //_Sprite = s;
   _Sprite.setDomain( 5, 360, width + 10, height, Sprite.REBOUND );
   _Sprite.setXY( width / 2, 275 );
-  print( "Console: " + "player initialized ! " + "\n" );
+  print( "Console: " + "player initialized ! " );
 
   } // end constructor
   // methods
@@ -33,6 +33,7 @@ public class Player {
   public int getY() {
     return (int)(_Sprite.getY());
   };
+  
   public void processCollisions() {
     if (player._Sprite.oo_collision(inShrooms.shrooms[0]._sprite, 3)) {
       print("Hit!");
