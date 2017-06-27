@@ -10,7 +10,7 @@ public playing_screen( ){
 // method for playign screen to draw itslef
 public void draw(){
   
-    background( bg );
+    background( 0 );
   collision.processCollisions();
   //  initPlayer();
   //  initShrooms();

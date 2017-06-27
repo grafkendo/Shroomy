@@ -21,14 +21,13 @@ public class inventory {
   
   //constructor
   public inventory() {
-
-  tools[0] = new Player_item("empty", "common");
- tools[ 1 ] = new Player_item( "empty", "common" );
-   tools[2] = new Player_item("empty", "common");
- tools[ 3 ] = new Player_item( "empty", "common" );
-   tools[4] = new Player_item("empty", "common");
+ print( "Console: " + "inventory initialized ! " );
+  this.tools[0] = new Player_item("empty", "common");
+ this.tools[ 1 ] = new Player_item( "empty", "common" );
+   this.tools[2] = new Player_item("empty", "common");
+ this.tools[ 3 ] = new Player_item( "empty", "common" );
+   this.tools[4] = new Player_item("empty", "common");
  
-  print( "Console: " + "inventory initialized ! \n" );
     
   };
   

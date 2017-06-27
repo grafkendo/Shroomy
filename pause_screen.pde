@@ -8,7 +8,7 @@ public pause_screen(){
 public void draw(){
   
   PFont kirby;
-  background( bg );
+  background( 0 );
   fill( #cafb98, 150 );
   rect( 20, 90, 600, 110, 7 );
   kirby = createFont( "kirbyss.ttf", 100 );
