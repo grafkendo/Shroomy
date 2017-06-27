@@ -9,7 +9,7 @@ public attract_screen(){
 void draw(){
 
  PFont kirby;
-  background( 1 );
+  background( bg );
   fill( #cafb98, 150 );
   rect( 70, 90, 500, 110, 7 );
   kirby = createFont( "kirbyss.ttf", 100 );

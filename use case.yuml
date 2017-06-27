@@ -1,10 +1,14 @@
 // {type:usecase}
 // {direction:leftToRight}
-(note: figure 1.2{bg:beige})
+(note: general activities{bg:beige})
 [player]-(start game)
 [player]-(pick up items)
 [player]-(pause game)
 [player]-(quit game)
+[player]-(Move)
+
+(pause game)-(resume game)
+
 (pick up items)>(use item)
 (pick up items)>(drop items)
 (pick up items)>(combine item)
@@ -13,7 +17,7 @@
 (start game)>(newgame)
 (start game)>(loadGame)
 
-[player]-(Move)
+
 (Move)>(collide with screen)
 (Move)>(collide game object)
 (Move)>(collide with enemy)
