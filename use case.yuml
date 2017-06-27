@@ -1,0 +1,22 @@
+// {type:usecase}
+// {direction:leftToRight}
+(note: figure 1.2{bg:beige})
+[player]-(start game)
+[player]-(pick up items)
+[player]-(pause game)
+[player]-(quit game)
+(pick up items)>(use item)
+(pick up items)>(drop items)
+(pick up items)>(combine item)
+(pick up items)>(sell item)
+
+(start game)>(newgame)
+(start game)>(loadGame)
+
+[player]-(Move)
+(Move)>(collide with screen)
+(Move)>(collide game object)
+(Move)>(collide with enemy)
+
+
+
