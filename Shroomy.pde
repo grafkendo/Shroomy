@@ -15,6 +15,7 @@ import ddf.minim.*;
  */
 PImage img; //mushroom image Declare variable "a" of type PImage
 PImage bg;
+PImage bgnight;
 //Game states
 //  atract_start, playing, game_over, paused
 // save as emum or an object
@@ -124,6 +125,7 @@ void setup() { // set up runs once
 // to load successfully images only load in setup
     img = loadImage( "RetroMushroom.png" );
     bg = loadImage( "bg_day640x360.png" );
+    bgnight = loadImage("BG_sunset640x360.png");
     
 //initialize 
     initMonarch();
