@@ -144,6 +144,7 @@ public void draw() {
         playing.draw(); //drawPlaying();
         break;
       case GAME_OVER:
+        gameOver.update();
         gameOver.draw();//drawGameOver();
         break;
       case PAUSED:

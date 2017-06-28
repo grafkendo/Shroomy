@@ -10,7 +10,7 @@ public class inventory {
 
   
   int slotA = 55;
-  private Player_item[] tools = new Player_item[5];
+  private Player_item[] tools = new Player_item[6];
    
   int open_position  = 0;
   int tool_count =0;
@@ -22,11 +22,11 @@ public class inventory {
   //constructor
   public inventory() {
  print( "Console: " + "inventory initialized ! " );
-  this.tools[0] = new Player_item("empty", "common");
- this.tools[ 1 ] = new Player_item( "empty", "common" );
-   this.tools[2] = new Player_item("empty", "common");
- this.tools[ 3 ] = new Player_item( "empty", "common" );
-   this.tools[4] = new Player_item("empty", "common");
+  //this.tools[0] = new Player_item("empty", "common");
+ //this.tools[ 1 ] = new Player_item( "empty", "common" );
+  // this.tools[2] = new Player_item("empty", "common");
+ //this.tools[ 3 ] = new Player_item( "empty", "common" );
+  // this.tools[4] = new Player_item("empty", "common");
  
     
   };
@@ -41,12 +41,16 @@ public class inventory {
   
   
   void addPlayer_item(Player_item item) {
-   
+   // copy item from world inventory to player inventory(tools)
+   // pop item of its array or null it
    
     item._sprite.setVelXY( 0, 0 );
     open_position += 55;
     item._sprite.setXY(open_position,55);
     tools[tool_count] = item;
+    // find the index o fitem
+     int ndex = java.util.Arrays.asList(inShrooms.shrooms).indexOf(item);
+     inShrooms.shrooms[ndex] = null;
     tool_count +=1;
     tool_label_pos += 55;
     
@@ -82,6 +86,7 @@ public class inventory {
     textSize(8);
     fill(255, 255, 255);
 for(Player_item p: inventory.tools){
+  if(p != null)
  text(p._name,position,75);
   
  position += 55;

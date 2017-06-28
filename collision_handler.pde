@@ -8,6 +8,7 @@ public void collision_handler(){
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
   for ( int i = 0; i < inShrooms.shrooms.length; i++ ) {
+    if (inShrooms.shrooms[i] != null){
     if ( inShrooms.shrooms[ i ]._sprite.oo_collision( player._Sprite, 3 ) ) {
       print( "Hit!" );
       PFont kirby;
@@ -22,7 +23,7 @@ public void processCollisions() {
     // we need to get the item player is coliding with and give prompt to pickup
     
       inventory.addPlayer_item( inShrooms.shrooms[ i ] );
-     
+    }
     }; // end if
   }; //end loop
 }; // end proc collisions

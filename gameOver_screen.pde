@@ -18,7 +18,17 @@ class gameOver_screen{
        }
    
    }
-  
+   //  once game is loaded rest only moves sprites off screen
+   for(Player_item item: inventory.tools ){
+    //carefull ot to pick up null pointer error
+   if (item != null){
+             item._sprite.setX(HYPERSPACE);
+       }
+   
+   }
+   
+   
+  player._Sprite.setVelXY( 0, 0 );
   };
 
 
