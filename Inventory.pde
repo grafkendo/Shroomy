@@ -3,12 +3,7 @@ import  java.util.LinkedList ;
 
 public class inventory {
   // inventory slot positions this class is for the palyer inventor not the world inventory
-  
-  // inventory count
 
- 
-
-  
   int slotA = 55;
   private Player_item[] tools = new Player_item[6];
    
@@ -28,10 +23,8 @@ public class inventory {
  //this.tools[ 3 ] = new Player_item( "empty", "common" );
   // this.tools[4] = new Player_item("empty", "common");
  
-    
   };
-  
-  
+
   //void AddShroom(Sprite shroom) {
   //  icons.add(shroom);
   //  shroom.isDead();
@@ -39,16 +32,17 @@ public class inventory {
   //  print("add shoom called");
   //};
   
-  
+  //pickup add item to inventory.tools
   void addPlayer_item(Player_item item) {
    // copy item from world inventory to player inventory(tools)
    // pop item of its array or null it
-   
+   //move the sprite
     item._sprite.setVelXY( 0, 0 );
     open_position += 55;
+    
     item._sprite.setXY(open_position,55);
     tools[tool_count] = item;
-    // find the index o fitem
+    // find the index of item in old array then null it
      int ndex = java.util.Arrays.asList(inShrooms.shrooms).indexOf(item);
      inShrooms.shrooms[ndex] = null;
     tool_count +=1;
@@ -57,15 +51,24 @@ public class inventory {
   }; // end add item
   
   
-  void selectPlayer_item(){
-  
+  void setSelected(){
+  // set selevted variable to the index within tools enventory
   
   }
-  
-  
+
+  //drop
   void removePlayer_item(Player_item item) {
+  // move item to position of player
+  if(item != null){
+        item._sprite.setXY(player.getX()+100,player.getY()-30);
+  // move item from tools array to shrooms(world inventory)
   
+  inShrooms.shrooms[1] = item;
   
+  int ndex = java.util.Arrays.asList(inventory.tools).indexOf(item);
+  inventory.tools[ndex] =null;
+  tool_count -= 1;
+  }
   }; // end remove item
   
   

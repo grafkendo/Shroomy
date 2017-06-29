@@ -46,6 +46,9 @@ if ( key == CODED ) {
         break;
       case 'p': //paused
         state = GameState.PAUSED;
+        break;
+      case 'd'://drop item(selected)  
+                    inventory.removePlayer_item(inventory.tools[0]);
     }
 
 
