@@ -39,6 +39,7 @@ public class Shroomy extends PApplet {
  */
 PImage img; //mushroom image Declare variable "a" of type PImage
 PImage bg;
+PImage bgnight;
 //Game states
 //  atract_start, playing, game_over, paused
 // save as emum or an object
@@ -148,6 +149,7 @@ public void setup() { // set up runs once
 // to load successfully images only load in setup
     img = loadImage( "RetroMushroom.png" );
     bg = loadImage( "bg_day640x360.png" );
+    bgnight = loadImage("BG_sunset640x360.png");
     
 //initialize 
     initMonarch();
@@ -166,6 +168,7 @@ public void draw() {
         playing.draw(); //drawPlaying();
         break;
       case GAME_OVER:
+        gameOver.update();
         gameOver.draw();//drawGameOver();
         break;
       case PAUSED:
@@ -185,35 +188,49 @@ public void draw(){
  int left_margin =5;
  int inventoryLine =120;
   int output = inShrooms.shrooms.length;
-  double shrm_1pos = Math.round(inShrooms.shrooms[0]._sprite.getX());
-  double shrm_2pos = Math.round(inShrooms.shrooms[1]._sprite.getX());
-  double shrm_3pos = Math.round(inShrooms.shrooms[2]._sprite.getX());
-  double plyr_pos =  Math.round(player.getX());
+  
+  
+  
+  //double shrm_1pos = Math.round(inShrooms.shrooms[0]._sprite.getX());
+ // double shrm_2pos = Math.round(inShrooms.shrooms[1]._sprite.getX());
+ // double shrm_3pos = Math.round(inShrooms.shrooms[2]._sprite.getX());
+  //double plyr_pos =  Math.round(player.getX());
   
 
   textSize(25);
   
-  text("shroomy sees " + output + " mushrooms onscreen",10,30);
-  fill(20,102,153,100);
+  //text("shroomy sees " + output + " mushrooms onscreen",10,30);
+  //fill(20,102,153,100);
   
   textSize(10);
-  text("shrm 1 pos " + shrm_1pos ,10,50);
+  //text("shrm 1 pos " + shrm_1pos ,10,50);
   fill(left_margin,152,153,100);
   
   textSize(10);
-  text("shrm 2 pos " + shrm_2pos ,10,70);
+ // text("shrm 2 pos " + shrm_2pos ,10,70);
   fill(left_margin,152,153,100);
   
   textSize(10);
-  text("shrm 3 pos " + shrm_3pos ,10,90);
+ // text("shrm 3 pos " + shrm_3pos ,10,90);
   fill(left_margin,152,153,100);
   
   textSize(10);
- text("Player position " + plyr_pos ,10,110);
+ //text("Player position " + plyr_pos ,10,110);
   fill(left_margin,152,153,100);
   for(Player_item p: inventory.tools){
- text("Player inventory: " + p._name,50,inventoryLine);
+    if(p != null){
+ text("Player TOOLS: " + p._name,50,inventoryLine);
+ 
  inventoryLine += 10;
+    }
+  }
+  
+  for(Player_item p: inShrooms.shrooms){
+    if(p != null){
+ text("Game items: " + p._name,500,inventoryLine);
+ 
+ inventoryLine += 10;
+    }
   }
   
 
@@ -226,65 +243,75 @@ public void draw(){
 
 public class inventory {
   // inventory slot positions this class is for the palyer inventor not the world inventory
-  
-  // inventory count
 
- 
-
-  
   int slotA = 55;
-  private Player_item[] tools = new Player_item[5];
+  private Player_item[] tools = new Player_item[6];
    
   int open_position  = 0;
   int tool_count =0;
   int tool_label_pos = 0;
   
-  //private ArrayList < Sprite > icons = new ArrayList < Sprite > ();
-  //// this is for the players inventory
   
+  //// this is for the players inventory
   //constructor
   public inventory() {
  print( "Console: " + "inventory initialized ! " );
-  this.tools[0] = new Player_item("empty", "common");
- this.tools[ 1 ] = new Player_item( "empty", "common" );
-   this.tools[2] = new Player_item("empty", "common");
- this.tools[ 3 ] = new Player_item( "empty", "common" );
-   this.tools[4] = new Player_item("empty", "common");
+
  
-    
   };
+
+ 
   
-  
-  //void AddShroom(Sprite shroom) {
-  //  icons.add(shroom);
-  //  shroom.isDead();
-  //  shroom.setXY(slotA, 55);
-  //  print("add shoom called");
-  //};
-  
-  
+  //pickup add item to inventory.tools
   public void addPlayer_item(Player_item item) {
-   
-   
+   // copy item from world inventory to player inventory(tools)
+   // pop item of its array or null it
+   //move the sprite
     item._sprite.setVelXY( 0, 0 );
     open_position += 55;
+    
     item._sprite.setXY(open_position,55);
     tools[tool_count] = item;
+    // find the index of item in old array then null it
+     int ndex = java.util.Arrays.asList(inShrooms.shrooms).indexOf(item);
+     inShrooms.shrooms[ndex] = null;
     tool_count +=1;
     tool_label_pos += 55;
     
   }; // end add item
   
   
-  public void selectPlayer_item(){
-  
+  public void setSelected(){
+  // set selevted variable to the index within tools enventory
   
   }
-  
-  
+
+  //drop
   public void removePlayer_item(Player_item item) {
+  // move item to position of player
+  open_position -= 55;
+  tool_label_pos -= 55;
+  if(item != null){
+        item._sprite.setXY(player.getX()+100,player.getY()-30);
+  // move item from tools array to shrooms(world inventory)
   
+  inShrooms.shrooms[1] = item;
   
+  int ndex = java.util.Arrays.asList(inventory.tools).indexOf(item);
+  inventory.tools[ndex] =null;
+  tool_count -= 1;
+  //clean up nulls
+  for (int j=0; j<inventory.tools.length; j++){
+            if (inventory.tools[j]==null){
+                for (int k=j+1; k<inventory.tools.length; k++){
+                    inventory.tools[k-1] = inventory.tools[k];
+                }
+                inventory.tools[inventory.tools.length-1] = null;
+                break;
+            }
+        }
+
+  }
   }; // end remove item
   
   
@@ -305,6 +332,7 @@ public class inventory {
     textSize(8);
     fill(255, 255, 255);
 for(Player_item p: inventory.tools){
+  if(p != null)
  text(p._name,position,75);
   
  position += 55;
@@ -486,7 +514,7 @@ public attract_screen(){
 public void draw(){
 
  PFont kirby;
-  background( 1 );
+  background( bg );
   fill( 0xffcafb98, 150 );
   rect( 70, 90, 500, 110, 7 );
   kirby = createFont( "kirbyss.ttf", 100 );
@@ -516,6 +544,7 @@ public void collision_handler(){
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
   for ( int i = 0; i < inShrooms.shrooms.length; i++ ) {
+    if (inShrooms.shrooms[i] != null){
     if ( inShrooms.shrooms[ i ]._sprite.oo_collision( player._Sprite, 3 ) ) {
       print( "Hit!" );
       PFont kirby;
@@ -530,7 +559,7 @@ public void processCollisions() {
     // we need to get the item player is coliding with and give prompt to pickup
     
       inventory.addPlayer_item( inShrooms.shrooms[ i ] );
-     
+    }
     }; // end if
   }; //end loop
 }; // end proc collisions
@@ -559,7 +588,17 @@ class gameOver_screen{
        }
    
    }
-  
+   //  once game is loaded rest only moves sprites off screen
+   for(Player_item item: inventory.tools ){
+    //carefull ot to pick up null pointer error
+   if (item != null){
+             item._sprite.setX(HYPERSPACE);
+       }
+   
+   }
+   
+   
+  player._Sprite.setVelXY( 0, 0 );
   };
 
 
@@ -567,7 +606,7 @@ class gameOver_screen{
 public void draw(){
 
 PFont kirby;
-  background( bg );
+  background( bgnight );
   fill( 0xffcafb98, 150 );
   rect( 70, 90, 500, 110, 7 );
   kirby = createFont( "kirbyss.ttf",70 );
@@ -659,6 +698,9 @@ if ( key == CODED ) {
         break;
       case 'p': //paused
         state = GameState.PAUSED;
+        break;
+      case 'd'://drop item(selected)  
+                    inventory.removePlayer_item(inventory.tools[0]);
     }
 
 
@@ -676,7 +718,7 @@ public pause_screen(){
 public void draw(){
   
   PFont kirby;
-  background( 0 );
+  background( bg );
   fill( 0xffcafb98, 150 );
   rect( 20, 90, 600, 110, 7 );
   kirby = createFont( "kirbyss.ttf", 100 );
@@ -710,14 +752,14 @@ public playing_screen( ){
 // method for playign screen to draw itslef
 public void draw(){
   
-    background( 0 );
+    background( bg );
   collision.processCollisions();
   //  initPlayer();
   //  initShrooms();
   //  initInventory();
   //S4P.drawSprites();
   inventory.drawInventory();
-  //hud.draw();
+ hud.draw();
   
   
   

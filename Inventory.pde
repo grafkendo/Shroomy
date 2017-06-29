@@ -11,26 +11,16 @@ public class inventory {
   int tool_count =0;
   int tool_label_pos = 0;
   
-  //private ArrayList < Sprite > icons = new ArrayList < Sprite > ();
-  //// this is for the players inventory
   
+  //// this is for the players inventory
   //constructor
   public inventory() {
  print( "Console: " + "inventory initialized ! " );
-  //this.tools[0] = new Player_item("empty", "common");
- //this.tools[ 1 ] = new Player_item( "empty", "common" );
-  // this.tools[2] = new Player_item("empty", "common");
- //this.tools[ 3 ] = new Player_item( "empty", "common" );
-  // this.tools[4] = new Player_item("empty", "common");
+
  
   };
 
-  //void AddShroom(Sprite shroom) {
-  //  icons.add(shroom);
-  //  shroom.isDead();
-  //  shroom.setXY(slotA, 55);
-  //  print("add shoom called");
-  //};
+ 
   
   //pickup add item to inventory.tools
   void addPlayer_item(Player_item item) {
@@ -59,6 +49,8 @@ public class inventory {
   //drop
   void removePlayer_item(Player_item item) {
   // move item to position of player
+  open_position -= 55;
+  tool_label_pos -= 55;
   if(item != null){
         item._sprite.setXY(player.getX()+100,player.getY()-30);
   // move item from tools array to shrooms(world inventory)
@@ -68,6 +60,17 @@ public class inventory {
   int ndex = java.util.Arrays.asList(inventory.tools).indexOf(item);
   inventory.tools[ndex] =null;
   tool_count -= 1;
+  //clean up nulls
+  for (int j=0; j<inventory.tools.length; j++){
+            if (inventory.tools[j]==null){
+                for (int k=j+1; k<inventory.tools.length; k++){
+                    inventory.tools[k-1] = inventory.tools[k];
+                }
+                inventory.tools[inventory.tools.length-1] = null;
+                break;
+            }
+        }
+
   }
   }; // end remove item
   
