@@ -4,8 +4,8 @@ import sprites.maths.*;
 import sprites.utils.*;
 import java.util.*;
 import ddf.minim.*;
-
-
+ String worlditems = "world actors" + "\n";
+ArrayList<Player_item> gameActors = new ArrayList();
 // draw a sprite from documentation
 /**
  * Bouncy Bubbles  

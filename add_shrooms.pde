@@ -12,6 +12,8 @@ this should be addign shrooms to the game world not to the player inventory
  Player_item green;
  Player_item[] shrooms;
  
+ ArrayList<Player_item> worldList = new ArrayList();
+ 
  
  
  
@@ -50,10 +52,15 @@ this should be addign shrooms to the game world not to the player inventory
             green._sprite.setX(10.2f);
 
  
-  shrooms[0]= red;
-  shrooms[1]= blue;
-  shrooms[2]= green;
+  //shrooms[0]= red;
+  //shrooms[1]= blue;
+  //shrooms[2]= green;
   
+  
+  
+  worldList.add(red);
+   worldList.add(blue);
+    worldList.add(green);
   
  }
  

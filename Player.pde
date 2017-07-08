@@ -6,10 +6,12 @@ public class Player {
   //private instance variables
   private Sprite _Sprite;
   //public variables
-
+inventory inventory; 
   // constructors
     void player() {
 
+      
+  inventory = new inventory();
   //_Sprite = s;
   _Sprite.setDomain( 5, 360, width + 10, height, Sprite.REBOUND );
   _Sprite.setXY( width / 2, 275 );
@@ -34,15 +36,17 @@ public class Player {
     return (int)(_Sprite.getY());
   };
   
-  public void processCollisions() {
-    if (player._Sprite.oo_collision(inShrooms.shrooms[0]._sprite, 3)) {
-      print("Hit!");
-      textSize(25);
-      text("HIT!", width / 2, height / 2);
-      fill(20, 102, 153, 100);
-      inventory.addPlayer_item(inShrooms.shrooms[0]);
-    };
-  };
+  
+  
+  //public void processCollisions() {
+  //  if (player._Sprite.oo_collision(inShrooms.shrooms[0]._sprite, 3)) {
+  //    print(" player Hit!");
+  //    textSize(25);
+  //    text("HIT!", width / 2, height / 2);
+  //    fill(20, 102, 153, 100);
+  //    inventory.addPlayer_item(inShrooms.shrooms[0]);
+  //  };
+  //};
   public Sprite getSprite() {
     return _Sprite;
   };

@@ -4,13 +4,16 @@ public void collision_handler(){
 
 
 };
+
+// should add a way to subcribe game actors to the collision handler
+
 // should pass in player and shroom to break tight cupling badn practice
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
-  for ( int i = 0; i < inShrooms.shrooms.length; i++ ) {
-    if (inShrooms.shrooms[i] != null){
-    if ( inShrooms.shrooms[ i ]._sprite.oo_collision( player._Sprite, 3 ) ) {
-      print( "Hit!" );
+  for ( Player_item p:inShrooms.worldList) {
+    if (p != null){
+    if ( p._sprite.oo_collision( player._Sprite, 3 ) ) {
+      print( "CH Hit!" );
       PFont kirby;
       kirby = createFont( "kirbyss.ttf", 32 );
       textFont( kirby );
@@ -19,10 +22,11 @@ public void processCollisions() {
       textAlign( CENTER, CENTER );
       //fill(0,102,153,100);
       
-     // here the inventory is hard coded to pick up the first item of shrrooms
-    // we need to get the item player is coliding with and give prompt to pickup
+    // we need to get the item player is coliding with and give prompt to pickup if( key is pressed ){inventory add;}
+ 
     
-      inventory.addPlayer_item( inShrooms.shrooms[ i ] );
+     // inventory.addPlayer_item( inShrooms.shrooms[ i ] );
+     inventory.add(p);
     }
     }; // end if
   }; //end loop
