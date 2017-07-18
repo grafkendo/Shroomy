@@ -3,9 +3,15 @@ import sprites.*;
 import sprites.maths.*;
 import sprites.utils.*;
 import java.util.*;
+import java.util.logging.*;
 import ddf.minim.*;
- String worlditems = "world actors" + "\n";
+
+Logger logger;
+String worlditems = "world actors" + "\n";
+
 ArrayList<Player_item> gameActors = new ArrayList();
+// probly make an inventory class  
+// not sure if each opbject shoudl have an inventory? wuld they all have a draw able implimentation
 // draw a sprite from documentation
 /**
  * Bouncy Bubbles  
@@ -25,7 +31,7 @@ public enum GameState {
   PLAYING,
   IN_MENU,
   GAME_OVER,
-  PAUSED;
+  PAUSED;   
   // Constructor
   private GameState() {
   

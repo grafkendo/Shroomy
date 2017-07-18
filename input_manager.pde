@@ -48,7 +48,7 @@ if ( key == CODED ) {
         state = GameState.PAUSED;
         break;
       case 'd'://drop item(selected)  
-                    inventory.removePlayer_item(inventory.tools[0]);
+                    inventory.remove();
     }
 
 

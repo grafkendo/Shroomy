@@ -35,6 +35,19 @@ public class inventory {
  
  }
  
+ 
+ void remove( Player_item item ){
+ 
+    // move player item from backpack<> to world list<>
+    // move player_item.sprite to a location relative to the player srite
+    
+   gameActors.add(item);
+    
+ 
+ 
+ 
+ }
+ 
   
   //pickup add item to inventory.tools
   void addPlayer_item(Player_item item) {

@@ -10,7 +10,7 @@ public void collision_handler(){
 // should pass in player and shroom to break tight cupling badn practice
 public void processCollisions() {
   // / iterate through all objects on screen proc if hit on player
-  for ( Player_item p:inShrooms.worldList) {
+  for ( Player_item p:gameActors) {
     if (p != null){
     if ( p._sprite.oo_collision( player._Sprite, 3 ) ) {
       print( "CH Hit!" );

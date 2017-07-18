@@ -58,9 +58,9 @@ this should be addign shrooms to the game world not to the player inventory
   
   
   
-  worldList.add(red);
-   worldList.add(blue);
-    worldList.add(green);
+  gameActors.add(red);
+   gameActors.add(blue);
+    gameActors.add(green);
   
  }
  

@@ -18,7 +18,7 @@
     
 
   // constructors
-   public  Player_item(String n,String t) //<>//
+   public  Player_item(String n,String t) //<>// //<>//
    {
      
     _name = n;
